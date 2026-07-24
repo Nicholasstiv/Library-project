@@ -14,8 +14,29 @@ datasource db {
 }
 
 model Book {
-  id        String @id @default(uuid())
-  title     String
-  author    String
-  publisher String
+  id              String       @id @default(uuid())
+  title           String
+  description     String
+  publisher       String
+  publicationYear Int
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  authors         BookAuthor[]
+}
+
+model Author {
+  id        String       @id @default(uuid())
+  firstName String
+  lastName  String
+  books     BookAuthor[]
+}
+
+model BookAuthor {
+  bookId     String
+  authorId   String
+  book       Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  author     Author   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  assignedAt DateTime @default(now())
+
+  @@id([bookId, authorId])
 }
