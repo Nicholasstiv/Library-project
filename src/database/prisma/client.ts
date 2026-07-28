@@ -44,3 +44,13 @@ export { Prisma }
  * 
  */
 export type Book = Prisma.BookModel
+/**
+ * Model Author
+ * 
+ */
+export type Author = Prisma.AuthorModel
+/**
+ * Model BookAuthor
+ * 
+ */
+export type BookAuthor = Prisma.BookAuthorModel

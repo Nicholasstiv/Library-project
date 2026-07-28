@@ -51,7 +51,9 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Book: 'Book'
+  Book: 'Book',
+  Author: 'Author',
+  BookAuthor: 'BookAuthor'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -73,11 +75,32 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const BookScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  author: 'author',
-  publisher: 'publisher'
+  description: 'description',
+  publisher: 'publisher',
+  publicationYear: 'publicationYear',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+
+
+export const AuthorScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName'
+} as const
+
+export type AuthorScalarFieldEnum = (typeof AuthorScalarFieldEnum)[keyof typeof AuthorScalarFieldEnum]
+
+
+export const BookAuthorScalarFieldEnum = {
+  bookId: 'bookId',
+  authorId: 'authorId',
+  assignedAt: 'assignedAt'
+} as const
+
+export type BookAuthorScalarFieldEnum = (typeof BookAuthorScalarFieldEnum)[keyof typeof BookAuthorScalarFieldEnum]
 
 
 export const SortOrder = {

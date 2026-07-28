@@ -397,7 +397,9 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Book: 'Book'
+  Book: 'Book',
+  Author: 'Author',
+  BookAuthor: 'BookAuthor'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "book"
+    modelProps: "book" | "author" | "bookAuthor"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -491,6 +493,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Author: {
+      payload: Prisma.$AuthorPayload<ExtArgs>
+      fields: Prisma.AuthorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AuthorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AuthorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        findFirst: {
+          args: Prisma.AuthorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AuthorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        findMany: {
+          args: Prisma.AuthorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+        }
+        create: {
+          args: Prisma.AuthorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        createMany: {
+          args: Prisma.AuthorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AuthorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+        }
+        delete: {
+          args: Prisma.AuthorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        update: {
+          args: Prisma.AuthorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        deleteMany: {
+          args: Prisma.AuthorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AuthorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AuthorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+        }
+        upsert: {
+          args: Prisma.AuthorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AuthorPayload>
+        }
+        aggregate: {
+          args: Prisma.AuthorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAuthor>
+        }
+        groupBy: {
+          args: Prisma.AuthorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuthorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AuthorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AuthorCountAggregateOutputType> | number
+        }
+      }
+    }
+    BookAuthor: {
+      payload: Prisma.$BookAuthorPayload<ExtArgs>
+      fields: Prisma.BookAuthorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BookAuthorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BookAuthorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
+        }
+        findFirst: {
+          args: Prisma.BookAuthorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BookAuthorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
+        }
+        findMany: {
+          args: Prisma.BookAuthorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>[]
+        }
+        create: {
+          args: Prisma.BookAuthorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
+        }
+        createMany: {
+          args: Prisma.BookAuthorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BookAuthorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>[]
+        }
+        delete: {
+          args: Prisma.BookAuthorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
+        }
+        update: {
+          args: Prisma.BookAuthorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
+        }
+        deleteMany: {
+          args: Prisma.BookAuthorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BookAuthorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BookAuthorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>[]
+        }
+        upsert: {
+          args: Prisma.BookAuthorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
+        }
+        aggregate: {
+          args: Prisma.BookAuthorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBookAuthor>
+        }
+        groupBy: {
+          args: Prisma.BookAuthorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookAuthorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BookAuthorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BookAuthorCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -533,11 +683,32 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const BookScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  author: 'author',
-  publisher: 'publisher'
+  description: 'description',
+  publisher: 'publisher',
+  publicationYear: 'publicationYear',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type BookScalarFieldEnum = (typeof BookScalarFieldEnum)[keyof typeof BookScalarFieldEnum]
+
+
+export const AuthorScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName'
+} as const
+
+export type AuthorScalarFieldEnum = (typeof AuthorScalarFieldEnum)[keyof typeof AuthorScalarFieldEnum]
+
+
+export const BookAuthorScalarFieldEnum = {
+  bookId: 'bookId',
+  authorId: 'authorId',
+  assignedAt: 'assignedAt'
+} as const
+
+export type BookAuthorScalarFieldEnum = (typeof BookAuthorScalarFieldEnum)[keyof typeof BookAuthorScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -587,6 +758,34 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -741,6 +940,8 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   book?: Prisma.BookOmit
+  author?: Prisma.AuthorOmit
+  bookAuthor?: Prisma.BookAuthorOmit
 }
 
 /* Types for Logging */
