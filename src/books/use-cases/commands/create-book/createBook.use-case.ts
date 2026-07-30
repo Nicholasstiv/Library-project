@@ -3,7 +3,7 @@ import {
   CreateBookInput,
   CreateBookOutput,
   ICreateBookUseCase,
-} from './ICreateBook.use-case';
+} from './IcreateBook.use-case';
 import { IBookRepository } from '@/books/domain/repositories/IBooksRepository';
 import { Book } from '@/books/domain/entities/book.entity';
 
