@@ -398,8 +398,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Book: 'Book',
-  Author: 'Author',
-  BookAuthor: 'BookAuthor'
+  Author: 'Author'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -415,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "book" | "author" | "bookAuthor"
+    modelProps: "book" | "author"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -567,80 +566,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    BookAuthor: {
-      payload: Prisma.$BookAuthorPayload<ExtArgs>
-      fields: Prisma.BookAuthorFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.BookAuthorFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.BookAuthorFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
-        }
-        findFirst: {
-          args: Prisma.BookAuthorFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.BookAuthorFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
-        }
-        findMany: {
-          args: Prisma.BookAuthorFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>[]
-        }
-        create: {
-          args: Prisma.BookAuthorCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
-        }
-        createMany: {
-          args: Prisma.BookAuthorCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.BookAuthorCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>[]
-        }
-        delete: {
-          args: Prisma.BookAuthorDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
-        }
-        update: {
-          args: Prisma.BookAuthorUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
-        }
-        deleteMany: {
-          args: Prisma.BookAuthorDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.BookAuthorUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.BookAuthorUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>[]
-        }
-        upsert: {
-          args: Prisma.BookAuthorUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookAuthorPayload>
-        }
-        aggregate: {
-          args: Prisma.BookAuthorAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateBookAuthor>
-        }
-        groupBy: {
-          args: Prisma.BookAuthorGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BookAuthorGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.BookAuthorCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BookAuthorCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -700,15 +625,6 @@ export const AuthorScalarFieldEnum = {
 } as const
 
 export type AuthorScalarFieldEnum = (typeof AuthorScalarFieldEnum)[keyof typeof AuthorScalarFieldEnum]
-
-
-export const BookAuthorScalarFieldEnum = {
-  bookId: 'bookId',
-  authorId: 'authorId',
-  assignedAt: 'assignedAt'
-} as const
-
-export type BookAuthorScalarFieldEnum = (typeof BookAuthorScalarFieldEnum)[keyof typeof BookAuthorScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -941,7 +857,6 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   book?: Prisma.BookOmit
   author?: Prisma.AuthorOmit
-  bookAuthor?: Prisma.BookAuthorOmit
 }
 
 /* Types for Logging */

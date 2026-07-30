@@ -2,10 +2,10 @@ import { Prisma } from '@/database/prisma/client';
 import { Book } from '@/books/domain/entities/book.entity';
 
 type PrismaBookWithAuthors = Prisma.BookGetPayload<{
-  include: { authors: { include: { author: true } } };
+  include: { authors: true };
 }>;
 
-export class UserMapper {
+export class BookMapper {
   static toDomain(raw: PrismaBookWithAuthors): Book {
     return new Book(
       {
@@ -13,10 +13,10 @@ export class UserMapper {
         description: raw.description,
         publicationYear: raw.publicationYear,
         publisher: raw.publisher,
-        authors: raw.authors.map((bookAuthor) => ({
-          id: bookAuthor.author.id,
-          firstName: bookAuthor.author.firstName,
-          lastName: bookAuthor.author.lastName,
+        authors: raw.authors.map((author) => ({
+          id: author.id,
+          firstName: author.firstName,
+          lastName: author.lastName,
         })),
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,

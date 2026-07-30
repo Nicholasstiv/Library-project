@@ -6,5 +6,5 @@ export abstract class IBookRepository {
   abstract delete(id: string): Promise<boolean>;
   abstract findById(id: string): Promise<Book | null>;
   abstract findByAuthor(authorId: string): Promise<Book[]>;
-  abstract findAll(limit: number, cursor: number): Promise<Book[]>;
+  abstract findAll(limit: number, cursor?: string): Promise<Book[]>;
 }
