@@ -39,7 +39,7 @@ export class PrismaBookRepository implements IBookRepository {
 
   async findAll(limit = 10, cursor?: string): Promise<Book[]> {
     const books = await this.databaseService.book.findMany({
-      take: limit,
+      take: limit + 1,
       skip: cursor ? 1 : 0,
       cursor: cursor ? { id: cursor } : undefined,
       orderBy: { createdAt: 'desc' },
