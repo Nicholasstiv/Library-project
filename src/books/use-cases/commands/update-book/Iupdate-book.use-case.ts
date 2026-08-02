@@ -5,7 +5,7 @@ export interface UpdateBookInput {
   description?: string;
   publisher?: string;
   publicationYear?: number;
-  authors?: BookAuthor[];
+  authors?: string[];
 }
 
 export interface UpdateBookOutput {
