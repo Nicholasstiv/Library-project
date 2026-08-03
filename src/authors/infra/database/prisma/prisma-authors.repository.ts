@@ -17,6 +17,33 @@ export class PrismaAuthorRepository implements IAuthorRepository {
     return AuthorMapper.toDomain(created);
   }
 
+  async update(data: Author): Promise<Author> {
+    const updated = await this.databaseService.author.update({
+      where: { id: data.id },
+      data: AuthorMapper.toPersistence(data),
+      include: { books: true },
+    });
+
+    return AuthorMapper.toDomain(updated);
+  }
+
+  async delete(id: string): Promise<boolean> {
+    const result = await this.databaseService.author.deleteMany({
+      where: { id },
+    });
+
+    return result.count > 0;
+  }
+
+  async findById(id: string): Promise<Author | null> {
+    const found = await this.databaseService.author.findUnique({
+      where: { id },
+      include: { books: true },
+    });
+
+    return found ? AuthorMapper.toDomain(found) : null;
+  }
+
   async findByIds(
     ids: string[],
   ): Promise<{ id: string; firstName: string; lastName: string }[]> {
@@ -24,5 +51,16 @@ export class PrismaAuthorRepository implements IAuthorRepository {
       where: { id: { in: ids } },
       select: { id: true, firstName: true, lastName: true },
     });
+  }
+
+  async findAll(limit: number, cursor?: string): Promise<Author[]> {
+    const authors = await this.databaseService.author.findMany({
+      take: limit + 1,
+      skip: cursor ? 1 : 0,
+      cursor: cursor ? { id: cursor } : undefined,
+      include: { books: true },
+    });
+
+    return authors.map((author) => AuthorMapper.toDomain(author));
   }
 }

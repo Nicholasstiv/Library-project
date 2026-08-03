@@ -2,7 +2,7 @@ import { Author } from '../entities/author.entity';
 
 export abstract class IAuthorRepository {
   abstract create(data: Author): Promise<Author>;
-  abstract update(data: Author, id: string): Promise<Author>;
+  abstract update(data: Author): Promise<Author>;
   abstract delete(id: string): Promise<boolean>;
   abstract findById(id: string): Promise<Author | null>;
   abstract findByIds(
