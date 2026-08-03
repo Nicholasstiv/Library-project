@@ -3,7 +3,7 @@ import {
   CreateAuthorInput,
   CreateAuthorOutput,
   ICreateAuthorUseCase,
-} from './IcreateAuthor.use-case';
+} from './Icreate-author.use-case';
 import { IAuthorRepository } from '@/authors/domain/repositories/IAuthor.repository';
 import { Author } from '@/authors/domain/entities/author.entity';
 
