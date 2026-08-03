@@ -11,7 +11,7 @@ export interface AuthorBook {
 export interface AuthorProps {
   firstName: string;
   lastName: string;
-  books?: AuthorBook[];
+  books: AuthorBook[];
 }
 
 export class Author {
@@ -20,10 +20,7 @@ export class Author {
 
   constructor(props: AuthorProps, id?: string) {
     this._id = id ?? randomUUID();
-    this.props = {
-      ...props,
-      books: props.books ?? [],
-    };
+    this.props = props;
 
     this.validate();
   }
