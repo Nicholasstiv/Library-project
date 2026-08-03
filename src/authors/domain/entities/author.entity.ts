@@ -1,8 +1,17 @@
 import { randomUUID } from 'node:crypto';
 
+export interface AuthorBook {
+  id: string;
+  title: string;
+  description: string;
+  publisher: string;
+  publicationYear: number;
+}
+
 export interface AuthorProps {
   firstName: string;
   lastName: string;
+  books?: AuthorBook[];
 }
 
 export class Author {
@@ -11,7 +20,10 @@ export class Author {
 
   constructor(props: AuthorProps, id?: string) {
     this._id = id ?? randomUUID();
-    this.props = props;
+    this.props = {
+      ...props,
+      books: props.books ?? [],
+    };
 
     this.validate();
   }
@@ -28,10 +40,14 @@ export class Author {
     return this.props.lastName;
   }
 
+  public get books() {
+    return this.props.books;
+  }
+
   private validate() {
     const hasInvalidName =
-      /[^a-zA-ZÀ-ÿ]/.test(this.props.firstName) ||
-      /[^a-zA-ZÀ-ÿ]/.test(this.props.lastName);
+      /[^a-zA-ZÀ-ÿ\s-]/.test(this.props.firstName) ||
+      /[^a-zA-ZÀ-ÿ\s-]/.test(this.props.lastName);
 
     if (hasInvalidName)
       throw new Error('Author name must only contain valid characters!');
