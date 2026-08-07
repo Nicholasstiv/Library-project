@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   CreateBookInput,
   CreateBookOutput,
@@ -6,18 +6,28 @@ import {
 } from './IcreateBook.use-case';
 import { IBookRepository } from '@/books/domain/repositories/IBooksRepository';
 import { Book } from '@/books/domain/entities/book.entity';
+import { IAuthorRepository } from '@/authors/domain/repositories/IAuthor.repository';
 
 @Injectable()
 export class CreateBookUseCase implements ICreateBookUseCase {
-  constructor(private readonly bookRepository: IBookRepository) {}
+  constructor(
+    private readonly bookRepository: IBookRepository,
+    private readonly authorRepository: IAuthorRepository,
+  ) {}
 
   async execute(data: CreateBookInput): Promise<CreateBookOutput> {
+    const authors = await this.authorRepository.findByIds(data.authors);
+
+    if (authors.length !== data.authors.length) {
+      throw new NotFoundException('Authors not found!');
+    }
+
     const book = new Book({
       title: data.title,
       description: data.description,
       publisher: data.publisher,
       publicationYear: data.publicationYear,
-      authors: data.authors,
+      authors,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
