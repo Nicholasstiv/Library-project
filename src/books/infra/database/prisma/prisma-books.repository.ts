@@ -22,9 +22,9 @@ export class PrismaBookRepository implements IBookRepository {
     return BookMapper.toDomain(created);
   }
 
-  async update(id: string, data: Book): Promise<Book> {
+  async update(data: Book): Promise<Book> {
     const updated = await this.databaseService.book.update({
-      where: { id },
+      where: { id: data.id },
       data: {
         ...BookMapper.toPersistance(data),
         authors: {

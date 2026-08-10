@@ -1,6 +1,7 @@
 import { BookAuthor } from '../../../domain/entities/book.entity';
 
 export interface UpdateBookInput {
+  id: string;
   title?: string;
   description?: string;
   publisher?: string;
@@ -20,5 +21,5 @@ export interface UpdateBookOutput {
 }
 
 export interface IUpdateBookUseCase {
-  execute(id: string, data: UpdateBookInput): Promise<UpdateBookOutput>;
+  execute(data: UpdateBookInput): Promise<UpdateBookOutput>;
 }

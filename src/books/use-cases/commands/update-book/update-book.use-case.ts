@@ -15,8 +15,8 @@ export class UpdateBookUseCase implements IUpdateBookUseCase {
     private readonly authorRepository: IAuthorRepository,
   ) {}
 
-  async execute(id: string, data: UpdateBookInput): Promise<UpdateBookOutput> {
-    const existingBook = await this.bookRepository.findById(id);
+  async execute(data: UpdateBookInput): Promise<UpdateBookOutput> {
+    const existingBook = await this.bookRepository.findById(data.id);
     if (!existingBook) throw new NotFoundException('Book not found!');
 
     let authors = existingBook.authors;
@@ -42,7 +42,7 @@ export class UpdateBookUseCase implements IUpdateBookUseCase {
       existingBook.id,
     );
 
-    const updatedBook = await this.bookRepository.update(id, newBook);
+    const updatedBook = await this.bookRepository.update(newBook);
     return this.outputMapper(updatedBook);
   }
   private outputMapper(book: Book): UpdateBookOutput {
