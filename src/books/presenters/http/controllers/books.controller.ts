@@ -22,7 +22,7 @@ import { CreateBookDto } from '../dto/create-book.dto';
 import { UpdateBookDto } from '../dto/update-book.dto';
 import { FindAllBooksDto } from '../dto/find-all-books.dto';
 
-@Controller()
+@Controller('books')
 export class BooksController {
   constructor(
     private readonly createBook: CreateBookUseCase,

@@ -49,7 +49,7 @@ export class AuthorController {
   }
 
   @Get()
-  findAll(@Query('cursor') query: FindAllAuthorsDto) {
+  findAll(@Query() query: FindAllAuthorsDto) {
     return this.findAllAuthors.execute(query);
   }
 }
