@@ -1,17 +1,25 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { IBookRepository } from '@/books/domain/repositories/IBooksRepository';
 import { Book } from '@/books/domain/entities/book.entity';
 import {
   IFindByAuthorUseCase,
   FindByAuthorOutput,
 } from './IfindByAuthor.use-case';
+import { IAuthorRepository } from '@/authors/domain/repositories/IAuthor.repository';
 
 @Injectable()
 export class FindByAuthorUseCase implements IFindByAuthorUseCase {
-  constructor(private readonly bookRepository: IBookRepository) {}
+  constructor(
+    private readonly bookRepository: IBookRepository,
+    private readonly authorRepository: IAuthorRepository,
+  ) {}
 
   async execute(authorId: string): Promise<FindByAuthorOutput[]> {
-    const authorBooks = await this.bookRepository.findByAuthor(authorId);
+    const author = await this.authorRepository.findById(authorId);
+
+    if (!author) throw new NotFoundException('Author not found!');
+
+    const authorBooks = await this.bookRepository.findByAuthor(author.id);
 
     return authorBooks.map((book) => this.outputMapper(book));
   }

@@ -53,13 +53,13 @@ export class BooksController {
     return this.findById.execute(id);
   }
 
-  @Get(':authorId')
+  @Get('author/:authorId')
   listByAuthor(@Param('authorId') authorId: string) {
     return this.findByAuthor.execute(authorId);
   }
 
   @Get()
-  listAll(@Query('cursor') query: FindAllBooksDto) {
+  listAll(@Query() query: FindAllBooksDto) {
     return this.findAll.execute(query);
   }
 }
