@@ -13,20 +13,35 @@ datasource db {
   provider = "postgresql"
 }
 
+enum UserRole {
+  ADMIN
+  USER
+}
+
 model Book {
-  id              String       @id @default(uuid())
+  id              String   @id @default(uuid())
   title           String
   description     String
   publisher       String
   publicationYear Int
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
   authors         Author[]
 }
 
 model Author {
-  id        String       @id @default(uuid())
+  id        String @id @default(uuid())
   firstName String
   lastName  String
   books     Book[]
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
