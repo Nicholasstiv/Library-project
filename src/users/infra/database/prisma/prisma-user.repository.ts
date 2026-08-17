@@ -3,6 +3,7 @@ import { User } from '@/users/domain/entities/user.entity';
 import { IUserRepository } from '@/users/domain/repositories/IUserRepository';
 import { Injectable } from '@nestjs/common';
 import { UserMapper } from './mapper/user.mapper';
+import { UserRole } from '@/database/prisma/enums';
 
 @Injectable()
 export class PrismaUserRepository implements IUserRepository {
@@ -23,5 +24,37 @@ export class PrismaUserRepository implements IUserRepository {
     });
 
     return UserMapper.toDomain(updated);
+  }
+
+  async delete(id: string): Promise<boolean> {
+    const result = await this.databaseService.user.deleteMany({
+      where: { id },
+    });
+
+    return result.count > 0;
+  }
+
+  async findById(id: string): Promise<User | null> {
+    const found = await this.databaseService.user.findUnique({
+      where: { id },
+    });
+
+    return found ? UserMapper.toDomain(found) : null;
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const found = await this.databaseService.user.findUnique({
+      where: { email },
+    });
+
+    return found ? UserMapper.toDomain(found) : null;
+  }
+
+  async findAll(role?: string): Promise<User[]> {
+    const users = await this.databaseService.user.findMany({
+      where: { role: (role as UserRole) ?? undefined },
+    });
+
+    return users.map((user) => UserMapper.toDomain(user));
   }
 }
