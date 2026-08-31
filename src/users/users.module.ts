@@ -6,6 +6,7 @@ import { IPasswordHasher } from '@/shared/domain/cryptography/IPasswordHasher.re
 import { BcryptPasswordHasher } from '@/shared/infra/cryptography/bcrypt-password-hasher.repository';
 import { CreateUserUseCase } from './use-cases/commands/create-user/create-user.use-case';
 import { UpdateUserUseCase } from './use-cases/commands/update-user/update-user.use-case';
+import { DeleteUserUseCase } from './use-cases/commands/delete-user/delete-user.use-case';
 
 @Module({
   imports: [DatabaseModule],
@@ -15,6 +16,7 @@ import { UpdateUserUseCase } from './use-cases/commands/update-user/update-user.
     { provide: IPasswordHasher, useClass: BcryptPasswordHasher },
     CreateUserUseCase,
     UpdateUserUseCase,
+    DeleteUserUseCase,
   ],
 })
 export class UsersModule {}
