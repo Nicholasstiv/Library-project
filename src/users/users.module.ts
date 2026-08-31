@@ -5,6 +5,7 @@ import { PrismaUserRepository } from './infra/database/prisma/prisma-user.reposi
 import { IPasswordHasher } from '@/shared/domain/cryptography/IPasswordHasher.repository';
 import { BcryptPasswordHasher } from '@/shared/infra/cryptography/bcrypt-password-hasher.repository';
 import { CreateUserUseCase } from './use-cases/commands/create-user/create-user.use-case';
+import { UpdateUserUseCase } from './use-cases/commands/update-user/update-user.use-case';
 
 @Module({
   imports: [DatabaseModule],
@@ -13,6 +14,7 @@ import { CreateUserUseCase } from './use-cases/commands/create-user/create-user.
     { provide: IUserRepository, useClass: PrismaUserRepository },
     { provide: IPasswordHasher, useClass: BcryptPasswordHasher },
     CreateUserUseCase,
+    UpdateUserUseCase,
   ],
 })
 export class UsersModule {}
