@@ -8,6 +8,8 @@ import { CreateUserUseCase } from './use-cases/commands/create-user/create-user.
 import { UpdateUserUseCase } from './use-cases/commands/update-user/update-user.use-case';
 import { DeleteUserUseCase } from './use-cases/commands/delete-user/delete-user.use-case';
 import { FindUserByIdUseCase } from './use-cases/queries/findById/find-user-by-id.use-case';
+import { FindUserByEmail } from './use-cases/queries/findByEmail/find-user-by-email';
+import { FindAllUsersUseCase } from './use-cases/queries';
 
 @Module({
   imports: [DatabaseModule],
@@ -19,6 +21,8 @@ import { FindUserByIdUseCase } from './use-cases/queries/findById/find-user-by-i
     UpdateUserUseCase,
     DeleteUserUseCase,
     FindUserByIdUseCase,
+    FindUserByEmail,
+    FindAllUsersUseCase,
   ],
 })
 export class UsersModule {}
