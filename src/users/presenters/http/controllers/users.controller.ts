@@ -24,7 +24,7 @@ import { FindByEmailDto } from '../dto/find-by-email.dto';
 import { FindAllUsersDto } from '../dto/find-all-users.dto';
 
 @Controller('users')
-export class UsersControllers {
+export class UsersController {
   constructor(
     private readonly createUser: CreateUserUseCase,
     private readonly updateUser: UpdateUserUseCase,
