@@ -9,6 +9,6 @@ export interface FindUserByEmailOutput {
   updatedAt: Date;
 }
 
-export interface IFindUserByEmail {
+export interface IFindUserByEmailUseCase {
   execute(email: string): Promise<FindUserByEmailOutput>;
 }

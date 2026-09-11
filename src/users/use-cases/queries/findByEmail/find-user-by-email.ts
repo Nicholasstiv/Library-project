@@ -1,12 +1,12 @@
 import { IUserRepository } from '@/users/domain/repositories/IUserRepository';
 import {
   FindUserByEmailOutput,
-  IFindUserByEmail,
+  IFindUserByEmailUseCase,
 } from './Ifind-user-by-email.use-case';
 import { NotFoundException } from '@nestjs/common';
 import { User } from '@/users/domain/entities/user.entity';
 
-export class FindUserByEmail implements IFindUserByEmail {
+export class FindUserByEmailUseCase implements IFindUserByEmailUseCase {
   constructor(private readonly userRepository: IUserRepository) {}
 
   async execute(email: string): Promise<FindUserByEmailOutput> {
