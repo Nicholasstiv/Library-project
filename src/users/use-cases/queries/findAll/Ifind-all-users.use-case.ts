@@ -1,5 +1,9 @@
 import { UserRole } from '@/users/domain/entities/user.entity';
 
+export interface FindAllUsersInput {
+  role?: UserRole;
+}
+
 export interface FindAllUsersOutput {
   id: string;
   name: string;
@@ -8,5 +12,5 @@ export interface FindAllUsersOutput {
 }
 
 export interface IFindAllUsersUseCase {
-  execute(role?: UserRole): Promise<FindAllUsersOutput[]>;
+  execute(data: FindAllUsersInput): Promise<FindAllUsersOutput[]>;
 }
