@@ -25,5 +25,6 @@ import { UsersController } from './presenters/http/controllers/users.controller'
     FindUserByEmailUseCase,
     FindAllUsersUseCase,
   ],
+  exports: [IUserRepository, IPasswordHasher],
 })
 export class UsersModule {}
