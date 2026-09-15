@@ -1,4 +1,3 @@
-// shared/infra/filters/domain-exception.filter.ts
 import {
   ArgumentsHost,
   Catch,
