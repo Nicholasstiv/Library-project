@@ -3,9 +3,10 @@ import {
   FindUserByEmailOutput,
   IFindUserByEmailUseCase,
 } from './Ifind-user-by-email.use-case';
-import { NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '@/users/domain/entities/user.entity';
 
+@Injectable()
 export class FindUserByEmailUseCase implements IFindUserByEmailUseCase {
   constructor(private readonly userRepository: IUserRepository) {}
 

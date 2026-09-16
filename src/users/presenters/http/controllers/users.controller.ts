@@ -49,14 +49,14 @@ export class UsersController {
     return this.deleteUser.execute(id);
   }
 
+  @Get('search')
+  findEmail(@Query() query: FindByEmailDto) {
+    return this.findByEmail.execute(query.email);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.findById.execute(id);
-  }
-
-  @Get()
-  findEmail(@Query() query: FindByEmailDto) {
-    return this.findByEmail.execute(query.email);
   }
 
   @Get()
